@@ -4,7 +4,11 @@ function App() {
   const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
-    fetch("https://mernder-backend-2.onrender.com/api/hello")
+    // For local development: http://localhost:8080/api/hello
+    // For Render production: replace with your backend URL after deployment
+    const backendURL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8080";
+    
+    fetch(`${backendURL}/api/hello`)
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
